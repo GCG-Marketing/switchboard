@@ -73,6 +73,7 @@ function loadConfig(json_config) {
 
 // Get the value for the switchboard URL parameter
 function getParam(param) {
-  var paramString = window.location.search;
-  console.log(paramString);
+  var paramString = window.location.search.substring(1);
+  var paramsArray = paramString.split("&");
+  console.log(paramsArray);
 }

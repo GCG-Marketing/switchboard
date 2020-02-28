@@ -9,6 +9,10 @@ Dynamic tel link number swapper
 - Store swapped numbers locally to persist change across sesions
 - Set local storage swap expiration
 
+## Supported Browsers
+
+Switchboard is supported on all popular, modern, evergreen browsers. Switchboard is not compatible with any version of Internet Explorer.
+
 ## Setup
 
 Add the `switchboard.js` `<script>` tag at the end of the `<body>` in your html file.
