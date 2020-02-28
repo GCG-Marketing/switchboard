@@ -7,6 +7,7 @@
 document.onreadystatechange = function() {
   if (document.readyState === "complete") {
     getJSON("switchboard_config.json", loadConfig);
+    getParam();
   }
 };
 
@@ -68,4 +69,10 @@ function loadConfig(json_config) {
   for (var property in config) {
     _switchboard.config[property] = config[property];
   }
+}
+
+// Get the value for the switchboard URL parameter
+function getParam(param) {
+  var paramString = window.location.search;
+  console.log(paramString);
 }
