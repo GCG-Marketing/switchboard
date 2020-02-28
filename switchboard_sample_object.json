@@ -1,0 +1,9 @@
+{
+  "config": {
+    "url_parameter": "switchboard",
+    "local_storage_expiration": "",
+    "clean_up_list": []
+  },
+  "script_dir": "https://switchboard.gcgforge.com/src",
+  "key": "somecampaign"
+}

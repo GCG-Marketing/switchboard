@@ -75,5 +75,12 @@ function loadConfig(json_config) {
 function getParam(param) {
   var paramString = window.location.search.substring(1);
   var paramsArray = paramString.split("&");
-  console.log(paramsArray);
+
+  for (var i = 0; i < paramsArray.length; i++) {
+    var keyValues = paramsArray[i].split("=");
+    if (keyValues[0] === _switchboard.config.url_parameter) {
+      _switchboard.key = "switchboard_" + keyValues[1];
+    }
+  }
+  console.log(_switchboard);
 }
