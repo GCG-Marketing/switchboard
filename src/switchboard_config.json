@@ -1,3 +1,4 @@
 {
-  "url_parameter": "switchboard"
+  "url_parameter": "switchboard",
+  "local_storage_expiration": "2"
 }
