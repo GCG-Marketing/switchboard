@@ -21,8 +21,9 @@ This file handles optional settings.
 
 #### Settings
 
-- url_parameter: (default: switchboard) This defines the expected parameter to search for.
-- expiration: (blank by default) This defines how long a swapped tel link will remain swapped in local storage. If blank, swapped numbers will remain in local storage indefinitely.
+- url_parameter (default: "switchboard"): This defines the expected parameter to search for.
+- expiration (default: ""): This defines how long a swapped tel link will remain swapped in local storage. If blank, swapped numbers will remain in local storage indefinitely.
+- clean_up_list (default: []): This specifies the removal of previously used url_parameter values. Add comma-separated items in quotes to the array for multiple parameter clean-ups.
 
 ### switchboard_table.json
 
