@@ -9,6 +9,14 @@ Dynamic tel link number swapper
 - Store swapped numbers locally to persist change across sesions
 - Set local storage swap expiration
 
+## Setup
+
+Add the `switchboard.js` `<script>` tag at the end of the `<body>` in your html file.
+
+### Caveat
+
+When using Switchboard's `switchboard_config.json` and `switchboard_table.json` files, each file must live in the same directory that the `switchboard.js` script is running from.
+
 ## File Structure
 
 ### switchboard.js
