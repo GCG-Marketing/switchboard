@@ -6,7 +6,7 @@
 // Wait for the DOM to fully load
 document.onreadystatechange = function() {
   if (document.readyState === "complete") {
-    retrieveConfig(loadConfig);
+    getJSON("switchboard_config.json", loadConfig);
   }
 };
 
@@ -30,6 +30,19 @@ function getRelativePath() {
   var filename_split = absolutePath.split("/");
   filename_split.pop();
   return filename_split.join("/");
+}
+
+// Retrieves a JSON file from the current script directory and run callback
+function getJSON(filename, callback) {
+  var request = new XMLHttpRequest();
+  request.overrideMimeType("application/json");
+  request.open("GET", _switchboard.script_dir + "/" + filename, true);
+  request.onreadystatechange = function() {
+    if (request.readyState == 4 && request.status == "200") {
+      callback(request.responseText);
+    }
+  };
+  request.send(null);
 }
 
 // Retrieve the config settings from switchboard_config.json
