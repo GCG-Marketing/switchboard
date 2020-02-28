@@ -19,6 +19,11 @@ This is the core JS file.
 
 This file handles optional settings.
 
+#### Settings
+
+- url_parameter: (default: switchboard) This defines the expected parameter to search for.
+- expiration: (blank by default) This defines how long a swapped tel link will remain swapped in local storage. If blank, swapped numbers will remain in local storage indefinitely.
+
 ### switchboard_table.json
 
 This file handles number swap definitions.
