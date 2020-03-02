@@ -40,3 +40,10 @@ This file handles optional settings.
 ### switchboard_table.json
 
 This file handles number swap definitions.
+
+## To Do
+
+### Items to Consider
+
+- A "purge" or "reset" to the script to clear all localStorage values
+- To clear numbers with an "indefinite expiration", rename or remove numbers from the `switchboard_table.json` file
