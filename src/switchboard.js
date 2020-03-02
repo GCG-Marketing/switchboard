@@ -79,8 +79,18 @@ function getParam(param) {
   for (var i = 0; i < paramsArray.length; i++) {
     var keyValues = paramsArray[i].split("=");
     if (keyValues[0] === _switchboard.config.url_parameter) {
-      _switchboard.key = "switchboard_" + keyValues[1];
+      _switchboard.numberID = keyValues[1];
     }
   }
-  console.log(_switchboard);
+}
+
+// To Do:
+// Get switched values from switchboard_table.json
+// Store values and expiration in localStorage
+// Replace tel:links with matching numbers
+
+// Save the swapped numbers and expiration timestamp to local storage
+function saveSwitchboard(numberID) {
+  // CONTINUE AFTER WORKING THROUGH SWITCHBOARD_TABLE LOGIC
+  localStorage.setItem("_switchboard", numberID);
 }
