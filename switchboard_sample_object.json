@@ -5,5 +5,10 @@
     "clean_up_list": []
   },
   "script_dir": "https://switchboard.gcgforge.com/src",
-  "key": "somecampaign"
+  "key": "somecampaign",
+  "table": {
+    "find": "858-555-1234",
+    "replace": "817-555-9876",
+    "display": "817-555-9876"
+  }
 }

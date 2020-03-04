@@ -1,91 +1,76 @@
-// Wait for the DOM to fully load
+// Switchboard object
+var _switchboard = {
+  config: {
+    param: "switchboard",
+    expiration: 2592000
+  },
+  table: {
+    gcg: {
+      find: "858-555-1234",
+      replace: "817-555-9876",
+      display: "817-555-9876"
+    },
+    fbcam: {
+      find: "858-555-1234",
+      replace: "123-555-9876",
+      display: "123-555-9876"
+    }
+  },
+  key: null,
+  expiration: null,
+  setExpiration: function() {
+    this.expiration = Date.now() + this.config.expiration;
+    this.saveLocalExpiration();
+  },
+  readLocalStorage: function() {
+    this.key = localStorage.getItem("_switchboard");
+    this.expiration = localStorage.getItem("_switchboard-expiration");
+  },
+  saveLocalKey: function() {
+    localStorage.setItem("_switchboard", this.key);
+  },
+  saveLocalExpiration: function() {
+    localStorage.setItem("_switchboard-expiration", this.expiration);
+  },
+  getParam: function() {
+    var paramString = window.location.search.substring(1);
+    var paramsArray = paramString.split("&");
+
+    for (var i = 0; i < paramsArray.length; i++) {
+      var keyValues = paramsArray[i].split("=");
+      if (keyValues[0] === this.config.param) {
+        this.key = keyValues[1];
+        this.saveLocalKey();
+        this.setExpiration();
+      }
+    }
+  },
+  swap: function() {
+    var links = document.getElementsByTagName("a");
+    for (var i = 0; i < links.length; i++) {
+      if (
+        _switchboard.table.hasOwnProperty(_switchboard.key) &&
+        links[i].href === "tel:" + _switchboard.table[_switchboard.key].find
+      ) {
+        links[i].href = "tel:" + _switchboard.table[_switchboard.key].replace;
+        links[i].innerHTML = _switchboard.table[_switchboard.key].display;
+      }
+    }
+  }
+};
+
+// DOM Loaded
+
 document.onreadystatechange = function() {
   if (document.readyState === "complete") {
-    getJSON("switchboard_config.json", loadConfig);
-    getParam();
+    _switchboard.getParam();
+    if (_switchboard.key) {
+      // Loop through tel items
+    } else {
+      // Check local storage
+      _switchboard.readLocalStorage();
+      // TO DO: CHECK EXPIRATION!
+    }
+    _switchboard.swap();
   }
 };
-
-var _switchboard = {};
-
-// Set config defaults
-_switchboard.config = {
-  url_parameter: "switchboard",
-  local_storage_expiration: "",
-  clean_up_list: []
-};
-
-// Grab the current path to the JS file
-var __scripts = document.getElementsByTagName("script");
-_switchboard.script_dir = getRelativePath();
-
-// Determine the path to the current script
-function getRelativePath() {
-  var scripts = document.getElementsByTagName("script");
-  var absolutePath = scripts[scripts.length - 1].src;
-  var filename_split = absolutePath.split("/");
-  filename_split.pop();
-  return filename_split.join("/");
-}
-
-// Retrieves a JSON file from the current script directory and run callback
-function getJSON(filename, callback) {
-  var request = new XMLHttpRequest();
-  request.overrideMimeType("application/json");
-  request.open("GET", _switchboard.script_dir + "/" + filename, true);
-  request.onreadystatechange = function() {
-    if (request.readyState == 4 && request.status == "200") {
-      callback(request.responseText);
-    }
-  };
-  request.send(null);
-}
-
-// Retrieve the config settings from switchboard_config.json
-function retrieveConfig(callback) {
-  var request = new XMLHttpRequest();
-  request.overrideMimeType("application/json");
-  request.open(
-    "GET",
-    _switchboard.script_dir + "/switchboard_config.json",
-    true
-  );
-  request.onreadystatechange = function() {
-    if (request.readyState == 4 && request.status == "200") {
-      callback(request.responseText);
-    }
-  };
-  request.send(null);
-}
-
-// Load the config settings
-function loadConfig(json_config) {
-  var config = JSON.parse(json_config);
-  for (var property in config) {
-    _switchboard.config[property] = config[property];
-  }
-}
-
-// Get the value for the switchboard URL parameter
-function getParam(param) {
-  var paramString = window.location.search.substring(1);
-  var paramsArray = paramString.split("&");
-
-  for (var i = 0; i < paramsArray.length; i++) {
-    var keyValues = paramsArray[i].split("=");
-    if (keyValues[0] === _switchboard.config.url_parameter) {
-      _switchboard.numberID = keyValues[1];
-    }
-  }
-}
-
-// To Do:
-// Get switched values from switchboard_table.json
-// Store values and expiration in localStorage
-// Replace tel:links with matching numbers
-
-// Save the swapped numbers and expiration timestamp to local storage
-function saveSwitchboard(numberID) {
-  // CONTINUE AFTER WORKING THROUGH SWITCHBOARD_TABLE LOGIC
-  localStorage.setItem("_switchboard", numberID);
-}
