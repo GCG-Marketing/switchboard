@@ -21,7 +21,7 @@ Switchboard is supported on all popular, modern, evergreen browsers. Switchboard
 
 ### Table Explained
 
-```json
+```javascript
 table: {
     gcg: {
       find: "858-555-1234",
