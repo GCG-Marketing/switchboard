@@ -19,33 +19,28 @@ Switchboard is supported on all popular, modern, evergreen browsers. Switchboard
 1. (Optional) Run `gulp` from the directory root to minify the script and place it in the `dist` directory.
 1. Add `switchboard.js` or `switchboard.min.js` to the `<script>` tag at the end of the `<body>` in your html file.
 
-### Caveat
+### Table Explained
 
-When using Switchboard's `switchboard_config.json` and `switchboard_table.json` files, each file must live in the same directory that the `switchboard.js` script is running from.
+```json
+table: {
+    gcg: {
+      find: "858-555-1234",
+      replace: "817-555-9876",
+      oldDisplay: "858-555-1234",
+      newDisplay: "817-555-9876"
+    },
+    fbcam: {
+      find: "858-555-1234",
+      replace: "123-555-9876",
+      oldDisplay: "858-555-1234",
+      newDisplay: "123-555-9876"
+    }
+  }
+```
 
-## File Structure
+In the above example, `gcg` and `fbcam` are different values that could be pulled from the switchboard URL parameter. By default, it's `https://.../?switchboard=...`. If, for example, the page URL was, `https://domain.com/?switchboard=gcg`, the script would store `gcg` in local storage. When the script loads, it will attempt to find all links with a href value of `tel:858-555-1234` and replace the href number and displayed innertext with 817-555-9876.
 
-### switchboard.js
+### Settings
 
-This is the core JS file.
-
-### switchboard_config.json
-
-This file handles optional settings.
-
-#### Settings
-
-- url_parameter (default: "switchboard"): This defines the expected parameter to search for.
-- expiration (default: ""): This defines how long a swapped tel link will remain swapped in local storage. If blank, swapped numbers will remain in local storage indefinitely.
-- clean_up_list (default: []): This specifies the removal of previously used url_parameter values. Add comma-separated items in quotes to the array for multiple parameter clean-ups.
-
-### switchboard_table.json
-
-This file handles number swap definitions.
-
-## To Do
-
-### Items to Consider
-
-- A "purge" or "reset" to the script to clear all localStorage values
-- To clear numbers with an "indefinite expiration", rename or remove numbers from the `switchboard_table.json` file
+- config.param (default: "switchboard"): This defines the expected parameter to search for.
+- config.expiration (default: 2592000000 (30 days)): This defines how long a swapped tel link will remain swapped in local storage.
