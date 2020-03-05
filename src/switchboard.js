@@ -8,12 +8,14 @@ var _switchboard = {
     gcg: {
       find: "858-555-1234",
       replace: "817-555-9876",
-      display: "817-555-9876"
+      oldDisplay: "858-555-1234",
+      newDisplay: "817-555-9876"
     },
     fbcam: {
       find: "858-555-1234",
       replace: "123-555-9876",
-      display: "123-555-9876"
+      oldDisplay: "858-555-1234",
+      newDisplay: "123-555-9876"
     }
   },
   key: null,
@@ -58,7 +60,10 @@ var _switchboard = {
         links[i].href === "tel:" + _switchboard.table[_switchboard.key].find
       ) {
         links[i].href = "tel:" + _switchboard.table[_switchboard.key].replace;
-        links[i].innerHTML = _switchboard.table[_switchboard.key].display;
+        links[i].innerHTML = links[i].innerHTML.replace(
+          _switchboard.table[_switchboard.key].oldDisplay,
+          _switchboard.table[_switchboard.key].newDisplay
+        );
       }
     }
   }
