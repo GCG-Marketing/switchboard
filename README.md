@@ -15,7 +15,9 @@ Switchboard is supported on all popular, modern, evergreen browsers. Switchboard
 
 ## Setup
 
-Add the `switchboard.js` `<script>` tag at the end of the `<body>` in your html file.
+1. In `src/switchboard.js`, modify the `table` property.
+1. (Optional) Run `gulp` from the directory root to minify the script and place it in the `dist` directory.
+1. Add `switchboard.js` or `switchboard.min.js` to the `<script>` tag at the end of the `<body>` in your html file.
 
 ### Caveat
 
