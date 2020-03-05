@@ -1,0 +1,13 @@
+{
+  "name": "switchboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/GCG-Marketing/switchboard.git",
+  "author": "Alex Brotman <alexbrotman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "readable-stream": "^3.6.0"
+  }
+}
